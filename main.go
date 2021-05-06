@@ -14,6 +14,11 @@ func main() {
 			"ERROR=${error}, LATENCY_HUMAN=${latency_human}\n",
 	}))
 	e.Use(middleware.Recover())
+	e.Use(middleware.Gzip())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE, echo.OPTIONS},
+	}))
 
 	e.Static("/", "static/Day")
 	e.GET("/ping", ping)
