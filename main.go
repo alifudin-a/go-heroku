@@ -29,7 +29,7 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE, echo.OPTIONS},
 	}))
 
-	e.Static("/", "static/Day")
+	e.Static("/", "static")
 	e.GET("/ping", ping)
 	e.GET("/env", testEnv)
 
