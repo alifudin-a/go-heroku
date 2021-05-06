@@ -1,13 +1,22 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"os"
 
+	_ "github.com/heroku/x/hmetrics/onload"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Println("$PORT must be set!")
+	}
+
 	e := echo.New()
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Format: "==> METHOD=${method}, STATUS=${status}, HOST=${host}, URI=${uri}, " +
@@ -23,7 +32,7 @@ func main() {
 	e.Static("/", "static/Day")
 	e.GET("/ping", ping)
 
-	e.Logger.Fatal(e.Start(":3030"))
+	e.Logger.Fatal(e.Start(":" + port))
 
 }
 
