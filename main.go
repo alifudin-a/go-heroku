@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -42,12 +41,10 @@ func testEnv(c echo.Context) (err error) {
 
 	env := os.Getenv("ENV_TEST")
 	if env != "" {
-		log.Println("Env Loaded!")
+		log.Println("Env Loaded!", string(env))
 	}
 
-	print, _ := fmt.Println(env)
-
-	return c.JSON(http.StatusOK, print)
+	return c.JSON(http.StatusOK, "OK")
 }
 
 func ping(c echo.Context) (err error) {
