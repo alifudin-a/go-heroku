@@ -15,20 +15,11 @@ func main() {
 	}))
 	e.Use(middleware.Recover())
 
-	e.GET("/", acceesible)
+	e.Static("/", "static/Day")
 	e.GET("/ping", ping)
 
 	e.Logger.Fatal(e.Start(":3030"))
 
-}
-
-func acceesible(c echo.Context) (err error) {
-
-	message := map[string]interface{}{
-		"message": "accessible",
-	}
-
-	return c.JSON(http.StatusOK, message)
 }
 
 func ping(c echo.Context) (err error) {
