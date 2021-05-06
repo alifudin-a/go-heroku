@@ -1,0 +1,10 @@
+{
+    "name": "Start on Heroku: Go",
+    "description": "Go Getting Started Example App",
+    "keywords": [
+      "go-heroku",
+      "go"
+    ],
+    "website": "https://github.com/alifudin-a/go-heroku",
+    "repository": "https://github.com/alifudin-a/go-heroku"
+}
