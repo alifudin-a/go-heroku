@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -31,9 +32,22 @@ func main() {
 
 	e.Static("/", "static/Day")
 	e.GET("/ping", ping)
+	e.GET("/env", testEnv)
 
 	e.Logger.Fatal(e.Start(":" + port))
 
+}
+
+func testEnv(c echo.Context) (err error) {
+
+	env := os.Getenv("ENV_TEST")
+	if env != "" {
+		log.Println("Env Loaded!")
+	}
+
+	print, _ := fmt.Println(env)
+
+	return c.JSON(http.StatusOK, print)
 }
 
 func ping(c echo.Context) (err error) {
